@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Search results bikes 
+  -  var results = [{ "bike company": "yamaha", "cost":"$1500", "year of manufacture":2020},{ "bike company": "RE", "cost":"$2200", "year of manufacture":2021},{ "bike company": "Hero", "cost":"$1800", "year of manufacture":2019}];
+  div.container-fluid
+    div.row
+      each item,index in results 
+        div.col-sm-2(onclick=`buy(${index})`) bike company: #{item["bike company"]}  <hr>  cost: #{item["cost"]} <hr> year of manufacture: #{item["year of manufacture"]}
+  script.
+      function buy(index){
+        alert("you purchased item "+(index+1))
+      }
