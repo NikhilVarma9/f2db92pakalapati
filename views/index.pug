@@ -1,6 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Hello  #{title}
-  button(type="button", class="btn btn-secondary") Press Me for the contents
+  h1 EXPRESS
+  p Nikhil Varma Pakalapati
+  button(class="btn btn-success" onclick='doBump()') Press Me
+  div#bump Bump the count 
+  a(href="/bikes")
+  script.
+      var count=0;
+      var bump=1;
+      function doBump(){
+      count=count+bump;
+      bump=bump+1;
+      print=document.getElementById("bump");
+      print.innerHTML='Count '+count+' with bump '+bump;}
