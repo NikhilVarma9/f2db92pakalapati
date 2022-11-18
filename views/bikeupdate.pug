@@ -1,0 +1,45 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if(toShow==null)
+    h1 no instance to show 
+  else 
+   - let bikeid = toShow._id 
+   - let bike_type = toShow.bike_type 
+   - let model = toShow.model 
+   - let cost = toShow.cost 
+   
+   div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{bikeid} 
+   - let actionid = "/resource/bike/" + bikeid 
+   form(id='msform', action= actionid, method="PUT") 
+    div.form-group 
+        label.bikeAttr(for='bike_type') bike type 
+        input#bike_type(type='text', name='bike_type', value= bike_type ) 
+    div.form-group 
+        label.bikeAttr(for='model') bike model 
+        input#model(type='text', name='model', value= model ) 
+    div.form-group 
+        label.bikeAttr(for='cost') bike cost 
+        input#cost(type='number', name='cost', value= cost ) 
+    input(type="submit" class="btn btn-danger") 
+ 
+  script. 
+    document.forms['bikeForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
