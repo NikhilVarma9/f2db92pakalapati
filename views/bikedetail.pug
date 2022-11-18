@@ -1,0 +1,25 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if(toShow==null)
+   h1 no instance to show 
+  else
+   - let bikeid = toShow._id 
+   - let bike_type = toShow.bike_type 
+   - let model = toShow.model 
+   - let cost = toShow.cost 
+   div 
+    div.row 
+      div(class='bikeAttr mr-3') bike ID is: 
+      div #{bikeid} 
+    div.row 
+      div(class='bikeAttr mr-3') bike Type is: 
+      div #{bike_type} 
+    div.row 
+      div(class='bikeAttr mr-3') bike model is: 
+      div #{model} 
+    div.row 
+      div(class='bikeAttr mr-3') bike Cost is: 
+      div #{cost} 
